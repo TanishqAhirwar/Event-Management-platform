@@ -37,10 +37,10 @@ class Middlewares {
                 return res.json(new ApiResponse(false, null, "Authentication Failed"));
             }
 
-            // ✅ Optional debug
+            
             console.log("Admin verified:", user);
 
-            next(); // ✅ VERY IMPORTANT
+            next();  
         } catch (error) {
             return res.json(new ApiResponse(false, null, error.message));
         }

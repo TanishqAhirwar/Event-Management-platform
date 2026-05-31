@@ -19,5 +19,4 @@ router.post("/login", userLogin)
 // http://localhost:8000/api/users/upload-profile
 router.put("/upload-profile", userMiddleware, upload.single("profile"), uploadProfile)
 
-
 module.exports = router;

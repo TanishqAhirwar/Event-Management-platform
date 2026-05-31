@@ -10,5 +10,4 @@ router.get("/", adminMiddleware, getUserById)
 // http://localhost:8000/api/admin/login
 router.post("/login", adminLogin)
 
-
 module.exports = router;
