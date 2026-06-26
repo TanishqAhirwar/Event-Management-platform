@@ -1,33 +1,40 @@
-const { Schema, model } = require("mongoose");
+import mongoose from "mongoose";
 
-const userSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
+const userSchema = new mongoose.Schema(
+  {
+    fullname: {
+      type: String,
+      required: true,
+      trim: true
     },
     email: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
+      lowercase:true,
+      trim:true
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     profilePic: {
-        type: String,
-        default: "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Clipart-Background.png",
+      type: String,
+      default:
+        "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG-Clipart-Background.png",
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
+    role: {
+      type: String,
+      enum: ["user", "organizer", "admin"],
+      default: "user",
     },
+
     isVerified: {
-        type: Boolean,
-        default: false,
+      type: Boolean,
+      default: false,
     },
-}, { timestamps: true });
+  },
+  { timestamps: true },
+);
 
-const User = model("User", userSchema);
-
-module.exports = User;
+export const User = mongoose.model("User", userSchema);
