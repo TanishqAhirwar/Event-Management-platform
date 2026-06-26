@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+import mongoose from "mongoose";
 
-const eventSchema = new Schema({
+const eventSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -14,9 +14,8 @@ const eventSchema = new Schema({
         required: true
     },
     date: {
-        type: String,
-        required: true,
-        unique: true
+        type: Date,
+        required: true,      
     },
     time: {
         type: String,
@@ -34,9 +33,9 @@ const eventSchema = new Schema({
     },
     per_slot_price: {
         type: Number,
-        require: true
+        required: true
     },
-    isCancel: {
+    isCancelled: {
         type: Boolean,
         default: false
     },
@@ -53,14 +52,14 @@ const eventSchema = new Schema({
         default: false
     },
     on_booking_start: {
-        type: String,
+        type: Date,
         default: "Comming Soon"
     },
     creator: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true,
-        ref: "User"
     }
 }, { timestamps: true });
 
-module.exports = model("Event", eventSchema);
+export const Event = mongoose.model('Event', eventSchema);
