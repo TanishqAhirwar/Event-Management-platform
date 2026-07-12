@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import ApiResponse from "../response/pattern";
+import ApiResponse from "../response/pattern.js";
 
-const isAuthenticated = (req, res, next) => {
+export const isAuthenticated = (req, res, next) => {
   try {
     const token = req.cookies.token;
 
@@ -22,5 +22,3 @@ const isAuthenticated = (req, res, next) => {
       .json(new ApiResponse(false,null, "Invalid or Expired Token"));
   }
 };
-
-export default isAuthenticated;
